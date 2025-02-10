@@ -1,3 +1,5 @@
+"use client"
+
 export default function Navbar() {
   return (
     <div className=" text-black shadow-md">

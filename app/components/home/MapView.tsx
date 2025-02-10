@@ -112,12 +112,12 @@ export default function MapView() {
 
   const deletePolygon = (id: string) => {
     setPolygons((prev) => prev.filter((polygon) => polygon.id !== id));
-    // console.log("Polygon deleted :", id); 
+    // console.log("deleted id :", id); 
   };
 
   const customIcon = new Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/447/447031.png",
-    iconSize: [38, 38], // size of the icon
+    iconSize: [38, 38], 
   });
 
   return (
@@ -127,7 +127,7 @@ export default function MapView() {
           center={[51.505, -0.09]}
           zoom={13}
           style={{ height: "100%", width: "100%" }}
-          whenReady={() => console.log("Map is ready!")} // Commented out
+          whenReady={() => console.log("Map is ready!")} 
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -206,38 +206,43 @@ export default function MapView() {
         </div>
       )}
 
-      <div className="flex flex-col items-center justify-center space-y-4 w-full max-w-md">
-        {polygons.length === 0 ? (
-          <p className="text-black font-bold">No polygons drawn yet. Click on the map at least 4 times!</p>
-        ) : (
-          polygons.map((polygon) => (
-            <div
-              key={polygon.id}
-              className="w-full p-4 rounded-lg shadow-md bg-[#ededed] mb-4 flex justify-between items-center"
+<div className="flex flex-col items-center justify-center space-y-4 w-full max-w-md">
+  {polygons.length === 0 ? (
+    <p className="text-black font-bold">No polygons drawn yet. Click on the map at least 4 times!</p>
+  ) : (
+    polygons.map((polygon) => (
+      <div
+        key={polygon.id}
+        className="w-full p-4 rounded-lg shadow-md bg-[#f1ddd9] mb-4 flex flex-col gap-2"
+      >
+        <div className="flex justify-between items-center">
+          <span className="text-black text-base font-semibold">Polygon {polygon.id}</span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => startEditing(polygon.id)}
+              className="bg-blue-500 text-white px-3 py-1 rounded-md text-sm"
             >
-              <div>
-                <span className="text-black text-sm font-semibold">Polygon {polygon.id}</span>
-                <p className="text-sm text-black mt-2">Coordinates: {JSON.stringify(polygon.coordinates)}</p>
-                <p className="text-sm text-black mt-2">Area: {polygon.area.toFixed(2)} m²</p>
-              </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => startEditing(polygon.id)}
-                  className="bg-blue-500 text-white px-2 py-1 rounded-md text-xs"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => deletePolygon(polygon.id)}
-                  className="bg-red-500 text-white px-2 py-1 rounded-md text-xs"
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))
-        )}
+              Edit
+            </button>
+            <button
+              onClick={() => deletePolygon(polygon.id)}
+              className="bg-red-500 text-white px-3 py-1 rounded-md text-sm"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+        <p className="text-sm text-black mt-2">
+          <strong>Coordinates:</strong> {JSON.stringify(polygon.coordinates)}
+        </p>
+        <p className="text-sm text-black mt-2">
+          <strong>Area:</strong> {polygon.area.toFixed(2)} m²
+        </p>
       </div>
+    ))
+  )}
+</div>
+
     </div>
   );
 }

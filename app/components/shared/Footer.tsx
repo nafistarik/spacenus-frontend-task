@@ -1,3 +1,5 @@
+"use client"
+
 export default function Footer() {
   return (
     <div className="py-4 mt-8 border-t border-[#b8a6a2]">

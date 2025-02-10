@@ -1,3 +1,5 @@
+"use client"
+
 import PolygoneDetails from "./PolygoneDetails";
 
 export default function PolygonePage() {
