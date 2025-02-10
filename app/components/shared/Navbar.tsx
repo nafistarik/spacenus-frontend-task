@@ -1,10 +1,12 @@
 export default function Navbar() {
-    return (
-      <div className="flex flex-col items-center justify-center py-2">
-        <main className="flex flex-col items-center justify-center flex-1 px-20 text-center">
-          <h1 className=" font-bold text-4xl">This is Navbar</h1>
-        </main>
+  return (
+    <div className=" text-black shadow-md">
+      <div className="max-w-screen-xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        <h1 className="text-2xl font-bold">Polymap</h1>
+
+        <span className="text-lg italic">Your map, your world</span>
       </div>
-    );
-  }
-  
+    </div>
+  );
+}
